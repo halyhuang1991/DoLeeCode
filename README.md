@@ -1,1 +1,3 @@
---Learn something from LeeCode
+#Learn something from LeeCode
+## Two Sum
+## AddTwoNumbers
