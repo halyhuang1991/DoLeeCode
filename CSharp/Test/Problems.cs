@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,103 @@ namespace CSharp.Test
             public int val;
             public ListNode next;
             public ListNode(int x) { val = x; }
+        }
+        public static int MySqrt(int x)
+        {
+            if (x <= 1) return x;
+            int left = 0, right = x;
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (x / mid >= mid) left = mid + 1;
+                else right = mid;
+            }
+            return right - 1;
+        }
+        public int MaxSubArray2(int[] nums)
+        {
+
+            if (nums == null || nums.Length == 0) return 0;
+            if (nums.Length == 1) return nums[0];
+            int len = nums.Length;
+            int sum = 0; int result = int.MinValue;
+            for (int i = 0; i < len; i++)
+            {
+                sum = sum + nums[i];
+                sum = sum > nums[i] ? sum : nums[i];
+                if (sum > result)
+                {
+                    result = sum;
+                }
+            }
+            return result;
+        }
+        public int MaxSubArray(int[] nums)
+        {
+            if (nums == null || nums.Length == 0) return 0;
+            if (nums.Length == 1) return nums[0];
+            int result = nums[0];
+            int len = nums.Length;
+            for (int i = 0; i < len - 1; i++)
+            {
+                int sum = nums[i];
+                if (sum > result) result = sum;
+                for (int j = i + 1; j < len; j++)
+                {
+                    sum += nums[j];
+                    if (sum > result) result = sum;
+                }
+            }
+            if (nums[len - 1] > result) result = nums[len - 1];
+            return result;
+
+        }
+        public int SearchInsert(int[] nums, int target)
+        {
+            int r = 0;
+            foreach (int n in nums)
+            {
+                if (n < target)
+                {
+                    r++;
+                }else{
+                    break;
+                }
+            }
+            return r;
+        }
+        public static int StrStr(string haystack, string needle)
+        {
+            if (haystack == null || needle == null) return -1;
+            // var index=haystack.IndexOf(needle);
+            // if(index==-1)return -1;
+            // return index;
+            if (needle == "") return 0;
+            if (haystack == needle) return 0;
+            var r = -1;
+            char first = needle[0];
+            int haylen = haystack.Length;
+            int needleLen = needle.Length;
+            for (int i = 0; i < haylen; i++)
+            {
+                if (haystack[i] != first) continue;
+                if (haylen - i< needleLen) break;
+                int j = i;
+                bool rb = true;
+                for (int p = 0; p < needleLen; p++)
+                {
+                    if (needle[p] != haystack[j])
+                    {
+                        rb = false; break;
+                    }
+                    j++;
+                }
+                if (rb)
+                {
+                    r = i; break;
+                }
+            }
+            return r;
         }
         public static int LengthOfLastWord(string s)
         {
@@ -272,7 +370,7 @@ namespace CSharp.Test
             }
             return dummy.next;
         }
-          public static ListNode reverseList1(ListNode node)
+        public static ListNode reverseList1(ListNode node)
         {
             if (node == null || node.next == null)
             {
@@ -322,6 +420,104 @@ namespace CSharp.Test
             return dummy.next;
 
         }
+        public static int GetSum(int a, int b)
+        {
+            return (a & b) + (a | b);
+        }
+        public class TreeNode
+        {
+            public int val;
+            public TreeNode left;
+            public TreeNode right;
+            public TreeNode(int x) { val = x; }
+        }
+        public static int SingleNumber(int[] nums)
+        {
+            int r = nums[0];
+            // for (int i = 0; i < nums.Length; i++)
+            // {
+            //     int temp = nums[i];
+            //     bool ret = false;
+            //     for (int j = 0; j < nums.Length; j++)
+            //     {
+            //         if (temp == nums[j]&&i!=j){ 
+            //             ret = true;break;
+            //         }
+            //     }
+            //     if (!ret)
+            //     {
+            //         r = temp; break;
+            //     }
+            // }
+            for (int i = 1; i < nums.Length; i++)
+            {
+                r = r ^ nums[i];
+            }
+            return r;
+        }
+        public static bool HasPathSum1(TreeNode root, int sum)
+        {
+            if (root == null) return false;
+            if (sum == root.val && sum >= 0)
+            {
+                return true;
+            }
+            else
+            {
+                if (root.left == null)
+                {
+                    return sum - root.val == 0;
+                }
+                else
+                {
+                    return HasPathSum1(root.left, sum - root.val);
+                }
+            }
+        }
+        public static bool HasPathSum(TreeNode root, int sum)
+        {
+            TreeNode curr = root;
+            int sl = 0;
+            while (curr != null)
+            {
+                sl += curr.val; System.Console.WriteLine(curr.val);
+                curr = curr.left;
+            }
+            return sl == sum;
+        }
+        public string AddBinary(string a, string b)
+        {
+            string ret = "";
+            int la = a.Length;
+            int lb = b.Length;
+            if (la == 0) { return b; }
+            if (lb == 0) { return a; }
+            int lmax = Math.Max(la, lb);
+            char add = '0';
+            for (int i = 0; i < lmax; i++)
+            {
+                char ca = la > i ? a[la - i - 1] : '0';
+                char cb = lb > i ? b[lb - i - 1] : '0';
+                char s = (ca == cb ? '0' : '1');
+                char sj = (s == add ? '0' : '1');
+                if (ca == '1' && cb == '1'
+                        || s == '1' && add == '1')
+                {
+                    add = '1';
+                }
+                else
+                {
+                    add = '0';
+                }
+                ret += sj;
+            }
+            if (add == '1')
+            {
+                ret += add;
+            }
+            ret=string.Join("",ret.Reverse().ToArray());
+            return ret;
+        }
         public static int[] TwoSum(int[] nums, int target)
         {
             bool ret=false;
@@ -342,6 +538,46 @@ namespace CSharp.Test
                 if(ret)break;
             }
             return r;
+        }
+        public static string ConvertToTitle(int n)
+        {
+
+            if (n <= 90-64)
+            {
+                return ((char)(n + 64)).ToString();
+            }
+            int i = n % 26; int carray = 0;
+            if (i == 0)
+            {
+                i = 90; carray = 1;
+            }
+            else
+            {
+                i = 64;
+            }
+            return ConvertToTitle((int)((n - n % 26 - carray) / 26)) + ((char)i).ToString();
+        }
+        public static bool IsSameTree(TreeNode p, TreeNode q)
+        {
+            if (p == null && q == null)
+            {
+                return true;
+            }
+            if (p == null || q == null)
+            {
+                return false;
+            }
+
+            return (p.val == q.val &&
+                   IsSameTree(p.left, q.left) &&
+                   IsSameTree(p.right, q.right));
+
+        }
+        public static int TrailingZeroes(int n)
+        {
+            if(n<5)return 0;
+            if(n<=10)return 1;
+            return TrailingZeroes(n/5)+n/5;
         }
     }
 }
