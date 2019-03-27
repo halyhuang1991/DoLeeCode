@@ -24,8 +24,10 @@ namespace CSharp
             Problems.TreeNode tree11 = new Problems.TreeNode(8);
             Problems.TreeNode tree21 = new Problems.TreeNode(2);
             tree.right = tree11; tree11.right = tree21;
-            int ret = Problems.TrailingZeroes(18);
-            //Problems.SingleNumber(new int[]{2,2,1});
+           // Problems.Rotate(new int[]{1,2,3,4,5,6,7},3);
+           Problems.Intersect(new int[]{1,2,2,1},new int[]{2,2});
+            //int ret = Problems.TrailingZeroes(18);
+           //int[] ret =Problems.SortedSquares1(new int[]{1,3,6,4});
             //bool rt= Problems.HasPathSum1(tree, 20);
             //int rl=Problems.StrStr("mississippi","pi");
             //int rl=Problems.RemoveElement(new int[]{3,2,2,3},3);

@@ -71,7 +71,9 @@ namespace CSharp.Test
                 if (n < target)
                 {
                     r++;
-                }else{
+                }
+                else
+                {
                     break;
                 }
             }
@@ -92,7 +94,7 @@ namespace CSharp.Test
             for (int i = 0; i < haylen; i++)
             {
                 if (haystack[i] != first) continue;
-                if (haylen - i< needleLen) break;
+                if (haylen - i < needleLen) break;
                 int j = i;
                 bool rb = true;
                 for (int p = 0; p < needleLen; p++)
@@ -140,13 +142,13 @@ namespace CSharp.Test
         }
         public static int RomanToInt(string s)
         {
-            Dictionary<char,int> dic=new Dictionary<char, int>();
-            dic.Add('I',1);
-            dic.Add('V',5);
-            dic.Add('X',10);
-            dic.Add('L',50);dic.Add('C',100);
-            dic.Add('D',500); dic.Add('M',1000);
-            int sum=0;char[] carr=s.ToCharArray();
+            Dictionary<char, int> dic = new Dictionary<char, int>();
+            dic.Add('I', 1);
+            dic.Add('V', 5);
+            dic.Add('X', 10);
+            dic.Add('L', 50); dic.Add('C', 100);
+            dic.Add('D', 500); dic.Add('M', 1000);
+            int sum = 0; char[] carr = s.ToCharArray();
             for (int ii = 0; ii < carr.Length - 1; ii++)
             {
                 bool ret = true;
@@ -171,8 +173,8 @@ namespace CSharp.Test
                     sum += dic[carr[ii]];
                 }
             }
-             sum += dic[carr[carr.Length - 1]];
-             return sum;
+            sum += dic[carr[carr.Length - 1]];
+            return sum;
         }
         public static int RemoveDuplicates(int[] nums)
         {
@@ -180,30 +182,35 @@ namespace CSharp.Test
             if (nums.Count() == 0) return 0;
             if (nums.Count() == 1) return 1;
             int first = nums[0];
-            List<int> ls=new List<int>();
-            int ii=1;
+            List<int> ls = new List<int>();
+            int ii = 1;
             for (int i = 1; i < nums.Count(); i++)
             {
                 if (first == nums[i])
                 {
-                   ii++;
-                }else{
+                    ii++;
+                }
+                else
+                {
                     ls.Add(nums[i]);
                 }
             }
-            if(ii==1){
+            if (ii == 1)
+            {
                 return nums.Count();
-            }else{
-                return RemoveDuplicates(ls.ToArray())+1;
+            }
+            else
+            {
+                return RemoveDuplicates(ls.ToArray()) + 1;
             }
 
         }
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
             ListNode tmp = new ListNode(-1);
-            tmp.next=l1;
+            tmp.next = l1;
             ListNode curr = tmp;
-            while (l2 != null&&l1!=null)
+            while (l2 != null && l1 != null)
             {
                 int currval = curr.val;
                 if (l2.val >= l1.val)
@@ -262,29 +269,36 @@ namespace CSharp.Test
         {
             string left = "({["; string right = ")}]";
             bool ret = true;
-            int i = 0; 
-            Stack st=new Stack();
+            int i = 0;
+            Stack st = new Stack();
             while (i < s.Length)
             {
-                if (left.IndexOf(s[i]) >= 0||right.IndexOf(s[i])>=0)
+                if (left.IndexOf(s[i]) >= 0 || right.IndexOf(s[i]) >= 0)
                 {
-                    if(right.IndexOf(s[i])>0){
-                        if(st.Count==0){
-                            ret=false;break;
+                    if (right.IndexOf(s[i]) > 0)
+                    {
+                        if (st.Count == 0)
+                        {
+                            ret = false; break;
                         }
-                        char leftprev=(char)st.Peek();
-                        if(left.IndexOf(leftprev)==right.IndexOf(s[i])){
+                        char leftprev = (char)st.Peek();
+                        if (left.IndexOf(leftprev) == right.IndexOf(s[i]))
+                        {
                             st.Pop();
-                        }else{
-                            ret=false;break;
                         }
-                    }else{
+                        else
+                        {
+                            ret = false; break;
+                        }
+                    }
+                    else
+                    {
                         st.Push(s[i]);
                     }
                 }
                 i++;
             }
-            if(st.Count>0)ret=false;
+            if (st.Count > 0) ret = false;
             return ret;
 
         }
@@ -364,7 +378,7 @@ namespace CSharp.Test
             while (ptmp != null)
             {
                 ListNode pNex = ptmp.next;//2 3 => 3 null  //先将链表的下一项记录下来
-                 ptmp.next = dummy.next;//1 ->2 1 ->3 2 1
+                ptmp.next = dummy.next;//1 ->2 1 ->3 2 1
                 dummy.next = ptmp;//-1 1=>-1 2 1 =>-1 3 2 1
                 ptmp = pNex;//1 2 3=> 2 3 => 3 =>null
             }
@@ -384,7 +398,7 @@ namespace CSharp.Test
                 return headNode;
             }
         }
-         
+
         public static ListNode CopyList(ListNode l1)
         {
             ListNode dummy = new ListNode(-1);
@@ -395,11 +409,11 @@ namespace CSharp.Test
                 cur = cur.next;
                 if (l1 != null) l1 = l1.next;
             }
-             cur.next = new ListNode(6);
-             cur = cur.next;
+            cur.next = new ListNode(6);
+            cur = cur.next;
             return dummy.next;
         }
-        
+
         public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
         {
             ListNode dummy = new ListNode(-1);
@@ -515,12 +529,12 @@ namespace CSharp.Test
             {
                 ret += add;
             }
-            ret=string.Join("",ret.Reverse().ToArray());
+            ret = string.Join("", ret.Reverse().ToArray());
             return ret;
         }
         public static int[] TwoSum(int[] nums, int target)
         {
-            bool ret=false;
+            bool ret = false;
             int[] r = new int[2];
             for (int i = 0; i < nums.Length; i++)
             {
@@ -535,14 +549,14 @@ namespace CSharp.Test
                     }
                     j++;
                 }
-                if(ret)break;
+                if (ret) break;
             }
             return r;
         }
         public static string ConvertToTitle(int n)
         {
 
-            if (n <= 90-64)
+            if (n <= 90 - 64)
             {
                 return ((char)(n + 64)).ToString();
             }
@@ -575,9 +589,350 @@ namespace CSharp.Test
         }
         public static int TrailingZeroes(int n)
         {
-            if(n<5)return 0;
-            if(n<=10)return 1;
-            return TrailingZeroes(n/5)+n/5;
+            if (n < 5) return 0;
+            if (n <= 10) return 1;
+            return TrailingZeroes(n / 5) + n / 5;
         }
+        public static string ToLowerCase(string str)
+        {
+            string ret = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                int ascii = (int)str[i];
+                if (65 <= ascii && ascii <= 90)
+                {
+                    ret += (char)(((int)str[i]) + (97 - 65));
+                }
+                else
+                {
+                    ret += str[i];
+                }
+            }
+            return ret;
+        }
+        public static string LongestWord(string[] words)
+        {
+            int index = 0; decimal maxLen = decimal.MinValue;
+            for (int i = 0; i < words.Length; i++)
+            {
+                decimal mutil = 0; int j = 0; decimal ascii = 0;
+                while (j < words.Length)
+                {
+                    if (words[j] != words[i] && words[i].StartsWith(words[j]))
+                    {
+                        mutil += 1;
+                    }
+                    else
+                    {
+                        if (words[j] == words[i])
+                        {
+                            foreach (char cr in words[i])
+                            {
+                                ascii += (int)cr;
+                            }
+                        }
+                    }
+                    j++;
+                }
+                mutil = mutil - ascii / (30 * 10000);
+                if (mutil > maxLen)
+                {
+                    maxLen = mutil;
+                    index = i;
+                }
+
+
+            }
+            return words[index];
+
+        }
+        public static int AddDigits(int num)
+        {
+            if (num < 10) return num;
+            int result = 0; int per = 10;
+            bool ret = true;
+            while (num != 0)
+            {
+                if (num % per != 1)
+                {
+                    ret = false;
+                }
+                result += num % per;
+                num = num / per;
+                per = per * 10;
+            }
+            if (ret)
+            {
+                return result;
+            }
+            else
+            {
+                return AddDigits(result);
+            }
+
+        }
+        public static int ThirdMax(int[] nums)
+        {
+            List<int> ls = new List<int>();
+            foreach (int i in nums)
+            {
+                if (!ls.Contains(i)) ls.Add(i);
+            }
+            ls.Sort();
+            ls.Reverse();
+            if (ls.Count <= 2) return ls[0];
+            int val = int.MinValue; int j = 0;
+            for (int i = 0; i < ls.Count && j < 3; i++)
+            {
+                int tval = ls[i];
+                if (tval != val)
+                {
+                    val = tval; j++;
+                }
+            }
+            return val;
+
+        }
+        public static void Rotate(int[] nums, int k)
+        {
+            if (k == 0) return;
+            int max = nums.Length - 1;
+            while (max > 0)
+            {
+                int temp = nums[max];
+                nums[max] = nums[max - 1];
+                nums[max - 1] = temp;
+                max = max - 1;
+            }
+            Rotate(nums, k - 1);
+        }
+        public static bool ValidPalindrome(string s)
+        {
+            bool ret = true;
+            int i = 0; int j = s.Length - 1; int flg = 0;
+            while (i <= s.Length / 2 && j >= s.Length / 2)
+            {
+                char left = s[i]; char right = s[j];
+                if (left == right)
+                {
+                    i++; j--;
+                }
+                else
+                {
+                    if (flg != 0)
+                    {
+                        ret = false; break;
+                    }
+                    if (s[i + 1] == right)
+                    {
+                        i += 2; j--; flg += 1;
+                    }
+                    else if (left == s[j - 1])
+                    {
+                        i++; j -= 2; flg += 1;
+                    }
+                    else
+                    {
+                        ret = false; break;
+                    }
+                }
+            }
+            return ret;
+        }
+        public static ListNode MergeKLists(ListNode[] lists)
+        {
+            if (lists.Length == 0) return null;
+            ListNode node = lists[0];
+            for (int i = 1; i < lists.Length; i++)
+            {
+                node = MergeTwoLists(node, lists[i]);
+            }
+            return node;
+        }
+        private static ListNode mergeKLists(ListNode[] lists, int start, int end)
+        {
+            if (start == end)
+            {
+                return lists[start];
+            }
+            else if (start < end)
+            {
+                int mid = (end - start) / 2 + start;
+                ListNode left = mergeKLists(lists, start, mid);
+                ListNode right = mergeKLists(lists, mid + 1, end);
+                return MergeTwoLists(left, right);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public static double MyPow(double x, int n)
+        {
+            if (n == 0) return 1;
+            if (n == 1) return x;
+            if (n == -1) return 1 / x;
+            double half = MyPow(x, n / 2);
+            return half * half * MyPow(x, n % 2);
+        }
+        public static int FirstMissingPositive(int[] nums)
+        {
+            if (nums.Length == 0) return 1;
+            int ret = 1;
+            Array.Sort(nums);
+            foreach (int item in nums)
+            {
+                if (item == ret)
+                {
+                    ret++;
+                }
+                else if (item > ret)
+                {
+                    return ret;
+                }
+            }
+            return ret;
+        }
+        public static void MoveZeroes(int[] nums)
+        {
+            int i = 0;
+            int j = 0;
+            while (j < nums.Length)
+            {
+                if (nums[j] != 0)
+                {
+                    int temp = nums[i];
+                    nums[i] = nums[j];
+                    nums[j] = temp;
+                    i++;
+                    j++;
+                }
+                else
+                {
+                    j++;
+                }
+            }
+        }
+        public static void ReverseString(char[] s)
+        {
+            char temp;
+            for (int i = 0; i < (s.Length) / 2; i++)
+            {
+                temp = s[i];
+                s[i] = s[s.Length - 1 - i];
+                s[s.Length - 1 - i] = temp;
+            }
+        }
+        public int[] SortedSquares(int[] A) {
+            int[] ret=new int[A.Length];
+            for(int i=0;i<A.Length;i++){
+                ret[i]=A[i]*A[i];
+            }
+            // for (int i = 0; i < ret.Length - 1; i++)
+            // {
+            //     for (int j = i + 1; j < ret.Length; j++)
+            //     {
+
+            //         if (ret[i] > ret[j])
+            //         {
+            //             int temp = ret[i];
+            //             ret[i] = ret[j];
+            //             ret[j] = temp;
+            //         }
+
+            //     }
+            //  }
+            Array.Sort(ret);
+             return ret;
+        }
+        public int Search(int[] nums, int target)
+        { 
+            int ret=-1;
+            for(int i=0;i<nums.Length;i++){
+                if(nums[i]==target){
+                    return i;
+                }
+            }
+            return ret;
+        }
+        public static int MissingNumber(int[] nums)
+        {
+            int n=nums.Length;
+            return (n*(n+1)/2-nums.AsEnumerable().Sum());
+        }
+        public static int[] Intersect(int[] nums1, int[] nums2)
+        { 
+                 List<int> ls=new List<int>();
+                 List<int> max=nums1.Length>nums2.Length?nums1.ToList():nums2.ToList();
+                 List<int> min=nums1.Length>nums2.Length?nums2.ToList():nums1.ToList();
+                 int len=min.Count;
+                 for (int i = 0; i < len; i++)
+                 {
+                     int val=min[i];
+                     int index=max.IndexOf(val);
+                     if(index>=0){
+                         ls.Add(val);
+                         min.RemoveAt(i);max.RemoveAt(index);
+                         len--;i--;
+                     }
+                 }
+                 return ls.ToArray();
+        }
+    
     }
+    public class MyHashSet
+        {
+          int[] nums ;
+          public int index=0;
+            /** Initialize your data structure here. */
+            public MyHashSet()
+            {
+                nums = new int[128];    
+            }
+
+            public void Add(int key)
+            {
+                if(this.index<nums.Length){
+                    nums[index]=key;
+                }else{
+                    int[] oldArr=nums;
+                    nums=new int[oldArr.Length+1];
+                    oldArr.CopyTo(nums,0);
+                }
+                 index++;
+
+            }
+
+            public void Remove(int key)
+            {
+               int i=-1;
+               for(;i<=index;i++){
+                   if(i==-1)continue;
+                   if(nums[i]==key){
+                        break;
+                   }
+               }
+               if(i!=-1){
+                   int j=i;
+                   while(j<index){
+                     nums[j]=nums[j++];
+                   }
+                   index--;
+               }
+            }
+
+            /** Returns true if this set contains the specified element */
+            public bool Contains(int key)
+            {
+                bool ret = false;
+                for (int i = 0; i <= index; i++)
+                {
+                    if (nums[i] == key)
+                    {
+                        return true;
+                    }
+                }
+                return ret;
+            }
+        }
 }
