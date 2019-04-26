@@ -878,7 +878,57 @@ namespace CSharp.Test
                  }
                  return ls.ToArray();
         }
-    
+        public static IList<int> SelfDividingNumbers(int left, int right)
+        {
+            IList<int>  ls =new List<int>();
+            for(int i=left;i<=right;i++){
+                bool ret=true;
+                int item=i;
+                while (item > 0)
+                {
+                    if(item.ToString().IndexOf("0")>=0){
+                        ret = false;
+                        break;
+                    }
+                    if(item % 10 == 0&&item==i){
+                        ret = false;
+                        break;
+                    }
+                    if (item % 10 == 0&&item>0)
+                    {
+                       item=item/10;
+                       if(item % 10 == 0){
+                            ret = false;
+                            break;
+                       }
+                    }
+                    if (i % (item % 10) != 0)
+                    {
+                        ret = false;
+                        break;
+                    }
+                    item = (item - item % 10) / 10;
+                }
+                if(ret){
+                    Console.WriteLine(i);
+                    ls.Add(i);
+                }
+            }
+            return ls;
+        }
+        public bool HasCycle(ListNode head)
+        {
+            ListNode next = head;
+            while (next != null)
+            {
+                if (next.next == next)
+                    return true;
+                ListNode tmp = next.next;
+                next.next = next;
+                next = tmp;
+            }
+            return false;
+        }
     }
     public class MyHashSet
         {
@@ -934,5 +984,6 @@ namespace CSharp.Test
                 }
                 return ret;
             }
+
         }
 }
