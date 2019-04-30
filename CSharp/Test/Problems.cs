@@ -929,6 +929,35 @@ namespace CSharp.Test
             }
             return false;
         }
+        public int RangeSumBST(TreeNode root, int L, int R)
+        {
+            int result = 0;
+            if (root == null) return 0;
+            if (root.val >= L && root.val <= R)
+            {
+                result += root.val;
+            }
+            result += RangeSumBST(root.left, L, R);
+            result += RangeSumBST(root.right, L, R);
+            return result;
+        }
+        public static int MaximumProduct(int[] nums)
+        {
+            Array.Sort(nums);
+            int count = nums.Length;
+            if (nums[count - 2] <= 0)
+            {
+                nums[count - 2] = nums[1]; nums[count - 3] = nums[0];
+            }
+            else
+            {
+                if (nums[count - 2] * nums[count - 3] < nums[1] * nums[0])
+                {
+                    nums[count - 2] = nums[1]; nums[count - 3] = nums[0];
+                }
+            }
+            return nums[count - 1] * nums[count - 2] * nums[count - 3];
+        }
     }
     public class MyHashSet
         {
