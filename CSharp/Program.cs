@@ -25,7 +25,11 @@ namespace CSharp
             Problems.TreeNode tree21 = new Problems.TreeNode(2);
             tree.right = tree11; tree11.right = tree21;
            // Problems.Rotate(new int[]{1,2,3,4,5,6,7},3);
-           Problems.SelfDividingNumbers(705,707);
+           var A=new int[][]{
+               new int[]{1,1,0,0},
+               new int[]{1,0,0,1}, new int[]{0,1,1,1}, new int[]{1,0,1,0},
+               };
+           Problems.FlipAndInvertImage(A);
             //int ret = Problems.TrailingZeroes(18);
            //int[] ret =Problems.SortedSquares1(new int[]{1,3,6,4});
             //bool rt= Problems.HasPathSum1(tree, 20);
