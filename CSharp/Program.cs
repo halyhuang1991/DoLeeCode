@@ -26,10 +26,11 @@ namespace CSharp
             tree.right = tree11; tree11.right = tree21;
            // Problems.Rotate(new int[]{1,2,3,4,5,6,7},3);
            var A=new int[][]{
-               new int[]{1,1,0,0},
-               new int[]{1,0,0,1}, new int[]{0,1,1,1}, new int[]{1,0,1,0},
+               new int[]{1,2,3},
+               new int[]{4,5,6}
                };
-           Problems.FlipAndInvertImage(A);
+            var A1=new int[]{3,1,2,4};
+           Problems.SortArrayByParity(A1);
             //int ret = Problems.TrailingZeroes(18);
            //int[] ret =Problems.SortedSquares1(new int[]{1,3,6,4});
             //bool rt= Problems.HasPathSum1(tree, 20);

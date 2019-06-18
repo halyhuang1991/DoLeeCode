@@ -981,6 +981,39 @@ namespace CSharp.Test
             }
             return A; 
         }
+        public static int[][] Transpose(int[][] A)
+        {
+            int ylen=A.Length;int xlen=A[0].Length;
+            int[][] N=new int[xlen][];
+            for (int i = 0; i < xlen; i++)
+            {
+                int[] arr=new int[ylen];
+                for (int j = 0; j<ylen; j++)
+                {
+                   arr[j]=A[j][i];
+                }
+                N[i]=arr;
+            }
+            return N;
+        }
+        public static int[] SortArrayByParity(int[] A)
+        {
+            int index=0;
+            for (int i = 0; i < A.Length; i++)
+            {
+                 if(A[i]%2!=0){
+                     index=i;
+                     int j=i++;
+                     while(j< A.Length&&A[j]%2!=0)j++;
+                     if(j==A.Length)break;
+                     int temp=A[index];
+                     A[index]=A[j];
+                     A[j]=temp;
+                     i--;
+                 }
+            }
+            return A;
+        }
     }
     public class MyHashSet
         {
