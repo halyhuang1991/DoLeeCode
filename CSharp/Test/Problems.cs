@@ -958,6 +958,29 @@ namespace CSharp.Test
             }
             return nums[count - 1] * nums[count - 2] * nums[count - 3];
         }
+        public static int[][] FlipAndInvertImage(int[][] A)
+        {
+            foreach (int[] item in A)
+            {
+                int len=item.Count();
+                int middle=len/2;
+                if (middle <=0)
+                {
+                     item[0] = item[0] == 0 ? 1 : 0;
+                }
+                else
+                {
+                    if (len % 2 != 0)middle++;
+                    for (int i = 0; i <middle; i++)
+                    {
+                        int temp = item[i] == 0 ? 1 : 0;
+                        item[i] = item[len - 1 - i] == 0 ? 1 : 0;
+                        item[len - 1 - i] = temp;
+                    }
+                }
+            }
+            return A; 
+        }
     }
     public class MyHashSet
         {
