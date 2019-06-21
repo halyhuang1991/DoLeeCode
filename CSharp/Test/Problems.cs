@@ -1014,6 +1014,45 @@ namespace CSharp.Test
             }
             return A;
         }
+        public List<List<int>> subsetsWithDup(int[] num)
+        {
+            Dictionary<int, List<List<int>>> ls = new Dictionary<int, List<List<int>>>();
+            int maxLen = num.Length;
+            List<List<int>> All = new List<List<int>>();
+            for (int i = 0; i < maxLen; i++)
+            {
+                List<int> ls1 = new List<int>();
+                ls1.Add(i);
+                All.Add(ls1);
+            }
+
+            ls[1] = All;
+            if (maxLen > 1)
+            {
+                for (int i = 2; i < maxLen; i++)
+                {
+                    List<int>[] arr = ls[i - 1].ToArray();
+                    All = new List<List<int>>();
+                    for (int p = 0; p < arr.Length; p++)
+                    {
+                        List<int> b = arr[p];
+                        int max = b.Max();
+                        for (int q = max + 1; q < maxLen; q++)
+                        {
+                            List<int> ls2 = new List<int>();
+                            ls2 = b; ls2.Add(q);
+                            All.Add(ls2);
+                        }
+                    }
+                    ls[i] = All;
+                }
+            }
+            All = new List<List<int>>();
+            foreach(var item in ls){
+                All.AddRange(item.Value);
+            }
+            return All;
+        }
     }
     public class MyHashSet
         {
